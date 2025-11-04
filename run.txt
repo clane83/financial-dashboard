@@ -1,0 +1,2 @@
+cd nextjs-dashboard
+pnpm run dev
