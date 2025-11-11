@@ -11,8 +11,12 @@ import { createInvoice } from '@/app/lib/actions';
 import { create } from 'domain';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const handleCreate = async (formData: FormData): Promise<void> => {
+    await createInvoice(formData);
+    // intentionally return nothing to satisfy Promise<void>
+  };
   return (
-    <form action={createInvoice}>
+    <form action={handleCreate}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">

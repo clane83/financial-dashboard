@@ -18,9 +18,12 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
-  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  return <form action={updateInvoiceWithId}>
-    <form>
+  const updateInvoiceWithId = async (formData: FormData): Promise<void> => {
+    await updateInvoice(invoice.id, formData);
+    // no return value -> Promise<void>
+  };
+  return (
+    <form action={updateInvoiceWithId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -121,6 +124,5 @@ export default function EditInvoiceForm({
         <Button type="submit">Edit Invoice</Button>
       </div>
     </form>
-
-  </form>
+  );
 }
